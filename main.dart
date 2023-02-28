@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'gradientscaffold.dart';
 
 void main() {
   runApp(stlpage());
@@ -6,12 +7,23 @@ void main() {
 
 class stlpage extends StatelessWidget {
   stlpage();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: loginPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        home: GradientScaffold(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color.fromARGB(143, 102, 103, 161),
+                Color.fromARGB(255, 149, 149, 149)
+              ]),
+          scaffold: Scaffold(
+            body: loginUI(),
+            backgroundColor: Colors.transparent,
+          ),
+        ));
   }
 }
 
@@ -25,7 +37,9 @@ class loginPage extends StatefulWidget {
 class _loginPageState extends State<loginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: loginUI());
+    return Scaffold(
+      body: loginUI(),
+    );
   }
 }
 
@@ -47,11 +61,17 @@ class _loginUIState extends State<loginUI> {
         children: [
           const Text(
             "Welcome",
-            style: TextStyle(fontSize: 44.0, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 44.0,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(137, 43, 38, 38)),
           ),
           const Text(
             "Lets Schedule and Share Your Activities!",
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(137, 43, 38, 38)),
           ),
           const SizedBox(
             height: 44.0,
@@ -62,7 +82,7 @@ class _loginUIState extends State<loginUI> {
                 hintText: "Email",
                 prefixIcon: Icon(
                   Icons.mail_lock_sharp,
-                  color: Colors.blueAccent,
+                  color: Colors.black54,
                 )),
           ),
           const SizedBox(
@@ -74,15 +94,40 @@ class _loginUIState extends State<loginUI> {
                 hintText: "Password",
                 prefixIcon: Icon(
                   Icons.password_sharp,
-                  color: Colors.blueAccent,
+                  color: Colors.black54,
                 )),
           ),
           Container(
-            width: 88.0,
+            height: 20,
+          ),
+          Container(
+            width: 10000.0,
+            alignment: Alignment.center,
             child: RawMaterialButton(
-              fillColor: Colors.amber,
+              constraints:
+                  const BoxConstraints.expand(width: 400.0, height: 40.0),
+              autofocus: true,
+              fillColor: Color.fromARGB(223, 202, 118, 187),
               onPressed: () {},
               child: Text("Login"),
+            ),
+          ),
+          Container(
+            height: 40,
+          ),
+          const Text(
+            "Dont Have Account Yet",
+            style: TextStyle(fontSize: 13),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            width: 140.0,
+            alignment: Alignment.bottomLeft,
+            child: RawMaterialButton(
+              constraints: BoxConstraints.expand(width: 175.0, height: 40.0),
+              fillColor: Color.fromARGB(223, 202, 118, 187),
+              onPressed: () {},
+              child: Text("Sign Up"),
             ),
           )
         ],
